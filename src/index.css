@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/* ============================================
+   RELIQUARY SYNTH — Design System
+   Ported from SECTS. A gilded synthesizer
+   in the body of a saint.
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&family=IM+Fell+English:ital@0;1&display=swap');
+
+@theme {
+  /* Ground */
+  --color-void: #0a0a0a;
+  --color-abyss: #111111;
+  --color-shade: #1a1a1a;
+  --color-dim: #222222;
+  --color-muted: #333333;
+  --color-subtle: #444444;
+
+  /* Text */
+  --color-parchment: #e8e4d9;
+  --color-vellum: #c8c4b9;
+  --color-ink: #8a8678;
+  --color-faded: #5a5750;
+
+  /* Accents */
+  --color-canonical: #2845f7;
+  --color-heretical: #e83020;
+  --color-devotional: #d4a828;
+  --color-nature: #18c850;
+  --color-death: #28e8d8;
+  --color-mind: #e03878;
+
+  /* Accent dims */
+  --color-canonical-dim: #0d1540;
+  --color-heretical-dim: #401008;
+  --color-devotional-dim: #402a08;
+  --color-nature-dim: #083418;
+  --color-death-dim: #083430;
+  --color-mind-dim: #400c20;
+
+  /* Gilt — the reliquary gold */
+  --color-gilt: #c8a832;
+  --color-gilt-bright: #e8c848;
+  --color-gilt-dim: #786420;
+
+  /* Fonts */
+  --font-display: 'UnifrakturMaguntia', cursive;
+  --font-body: 'Libre Baskerville', serif;
+  --font-system: 'Space Grotesk', sans-serif;
+  --font-data: 'JetBrains Mono', monospace;
+  --font-label: 'IM Fell English', serif;
+
+  /* Animation */
+  --ease-reveal: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-snap: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+}
+
+/* ---- Base ---- */
+html {
+  background-color: var(--color-void);
+  color: var(--color-parchment);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ---- Risograph grain overlay ---- */
+.riso-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+}
+
+/* ---- Animations ---- */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s var(--ease-reveal) both;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* ---- Selection ---- */
+::selection {
+  background-color: var(--color-devotional);
+  color: var(--color-void);
+}
